@@ -15,25 +15,36 @@ public class SpeechListener : MonoBehaviour {
 
 	//Initialize Dicationaries
 	public Dictionary<string, Dictionary<string, string>> conversations = new Dictionary<string, Dictionary<string, string>>();
-
-
-	//Local Convo 1
-
-	//Local Convo 2
-
-	//Local Convo 3
-
-	//Shop Guy
-
-	//Ticket Guy 
+	public string currentLocal;
 
 
 	void Start() {
-//		conversations.Add("Tour Guide", new Dictionary<string, string>());
-//		conversations.Add("Tour Guide(Clone)", new Dictionary<string, string>());
-//		conversations.Add("Tour Guide(Clone)(Clone)", new Dictionary<string, string>());
-//		conversations.Add("Shop Guy", new Dictionary<string, string>());
-//		conversations.Add("Ticket Guy", new Dictionary<string, string>());
+		conversations.Add("Tour Guide", new Dictionary<string, string>());
+		conversations.Add("Tour Guide(Clone)", new Dictionary<string, string>());
+		conversations.Add("Tour Guide(Clone)(Clone)", new Dictionary<string, string>());
+		conversations.Add("Shop Guy", new Dictionary<string, string>());
+		conversations.Add("Ticket Guy", new Dictionary<string, string>());
+
+		//Local Convo 1
+		conversations["Tour Guide"].Add("hola como estas", "VRLanguage-2.mp3");
+		conversations["Tour Guide"].Add ("bien y tu", "VRLanguage-3.mp3");
+		conversations["Tour Guide"].Add ("me llamo", "VRLanguage-4.mp3");
+		conversations["Tour Guide"].Add ("queiro comprar dos entradas por favor", "VRLanguage-5.mp3");
+
+		//Ticket Convo
+		conversations["Ticket Guy"].Add("bien y tu", "VRLanguage-7.mp3");
+		conversations["Ticket Guy"].Add ("querio comprar dos entradas por favor", "VRLanguage-8.mp3");
+
+		//Local Convo 2
+		conversations["Tour Guide(Clone)"].Add("me puedes vender dos helados", "VRLanguage-10.mp3");
+
+		//Shop Guy
+		conversations["Shop Guy"].Add("bien y tu", "VRLanguage-12.mp3");
+		conversations["Shop Guy"].Add ("me puedes vender dos helados", "VRLanguage-13.mp3");
+
+		//Local Convo 3 
+
+		currentLocal = "";
 		if (SpeechRecognizer.ExistsOnDevice()) {
 			SpeechRecognizerListener listener = GameObject.FindObjectOfType<SpeechRecognizerListener>();
 			listener.onAuthorizationStatusFetched.AddListener(OnAuthorizationStatusFetched);
@@ -53,21 +64,22 @@ public class SpeechListener : MonoBehaviour {
 	}
 
 	public void OnFinalResult(string result) {
-		string s = "quiero comprar dos pasajes";
-		string resultWithoutAccent = RemoveDiacritics(result.ToLower());
+		/*string resultWithoutAccent = RemoveDiacritics(result.ToLower());
 		int match = LevenshteinDistance.Compute(resultWithoutAccent, s);
 		List<string> incorrectWords = new List<string>();
 		//resultText.text = result + " " + match;
 		if (match > 0) {
 			foreach (string word in resultWithoutAccent.Split(' ')) {
-				int index = s.IndexOf(word);
-				if (index == -1) { incorrectWords.Add(word); }
+				int index = s.IndexOf (word);
+				if (index == -1) {
+					incorrectWords.Add (word);
+				}
 			}
-			/*foreach (string word in incorrectWords) {
-				resultText.text = resultText.text + " " + word;
-			}*/
-		}
-		//Debug.Log (resultText.text);
+		} else {
+			string value = "";
+			TourGui
+		}*/
+
 	}
 
 	static string RemoveDiacritics(string text) 
